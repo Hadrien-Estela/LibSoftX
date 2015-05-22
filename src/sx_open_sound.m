@@ -1,12 +1,12 @@
 // ************************************************************************** //
 //                                                                            //
 //                                                        :::      ::::::::   //
-//   sx_open_font.m                                     :+:      :+:    :+:   //
+//   sx_open_sound.m                                    :+:      :+:    :+:   //
 //                                                    +:+ +:+         +:+     //
 //   By: hestela <hestela@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
-//   Created: 2015/05/21 15:48:03 by hestela           #+#    #+#             //
-//   Updated: 2015/05/21 15:48:04 by hestela          ###   ########.fr       //
+//   Created: 2015/05/22 18:37:39 by hestela           #+#    #+#             //
+//   Updated: 2015/05/22 18:37:40 by hestela          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -14,30 +14,26 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-void		*sx_open_font(const char *file_ttf, size_t police_size)
+void		*sx_open_sound(char *audio_file)
 {
-	CTFontRef					font;
 	CFURLRef 					file;
 	CFStringRef					file_name;
-	CGDataProviderRef 			data;
-	CGFontRef 					glyphs;
+	NSSound						*sound;
 	int							fd;
 
-	fd = open(file_ttf, O_RDONLY);
+	fd = open(audio_file, O_RDONLY);
 	if (fd == -1)
 	{
-		printf("Unable to load the file: %s\n", file_ttf);
+		printf("Unable to load the file: %s\n", audio_file);
 		return (NULL);
 	}
 	close(fd);
-	file_name = CFStringCreateWithCString(kCFAllocatorDefault, file_ttf, kCFStringEncodingASCII);
+	file_name = CFStringCreateWithCString(kCFAllocatorDefault, audio_file, kCFStringEncodingASCII);
 	file = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, file_name, kCFURLPOSIXPathStyle, false);
-	data = CGDataProviderCreateWithURL(file);
-	glyphs = CGFontCreateWithDataProvider(data);
-	font = CTFontCreateWithGraphicsFont(glyphs, police_size, NULL, nil);
-	CFRelease(glyphs);
-	CFRelease(data);
+	sound = [[NSSound alloc] initWithContentsOfURL:(NSURL*)file
+										byReference:YES];
+
 	CFRelease(file);
 	CFRelease(file_name);
-	return ((void*)font);
+	return ((void*)sound);
 }

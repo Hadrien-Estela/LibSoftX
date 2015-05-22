@@ -6,7 +6,7 @@
 #    By: hestela <hestela@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/05/09 01:21:34 by hestela           #+#    #+#              #
-#    Updated: 2015/05/22 13:26:03 by hestela          ###   ########.fr        #
+#    Updated: 2015/05/22 19:37:43 by hestela          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -43,7 +43,15 @@ SOURCES		= src/SxWindow.m \
 			src/sx_surface_from_image.m \
 			src/sx_open_font.m \
 			src/sx_close_font.m \
-			src/sx_str_to_surface.m
+			src/sx_str_to_surface.m \
+			src/sx_open_sound.m \
+			src/sx_play_sound.m \
+			src/sx_close_sound.m \
+			src/sx_stop_sound.m \
+			src/sx_set_sound_volume.m \
+			src/sx_pause_sound.m \
+			src/sx_resume_sound.m
+
 HEADERS		= inc/
 
 LIBRARIES	=

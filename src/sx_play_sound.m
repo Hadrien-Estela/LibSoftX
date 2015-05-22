@@ -1,27 +1,25 @@
 // ************************************************************************** //
 //                                                                            //
 //                                                        :::      ::::::::   //
-//   sx_put_pixel.m                                     :+:      :+:    :+:   //
+//   sx_play_sound.m                                    :+:      :+:    :+:   //
 //                                                    +:+ +:+         +:+     //
 //   By: hestela <hestela@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
-//   Created: 2015/05/09 05:21:35 by hestela           #+#    #+#             //
-//   Updated: 2015/05/09 05:24:22 by hestela          ###   ########.fr       //
+//   Created: 2015/05/22 18:37:53 by hestela           #+#    #+#             //
+//   Updated: 2015/05/22 18:37:53 by hestela          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
 #include "sx_structs.h"
 
-void			sx_put_pixel(void *win_ptr, size_t x, size_t y, int32_t rgb)
+void		sx_play_sound(void *sound_ptr, int loop)
 {
-	t_sx_win	*sx_wp;
-	SxWindow	*window;
-	NSPoint		pixel;
+	NSSound		*sound;
 
-	if (!win_ptr)
+	if (!sound_ptr)
 		return ;
-	sx_wp = (t_sx_win*)win_ptr;
-	window = (SxWindow*)sx_wp->win_ptr;
-	pixel = NSMakePoint(x, y);
-	[window putPixel:pixel color:rgb];
+	sound = (NSSound*)sound_ptr;
+	if (loop)
+		[sound setLoops:YES];
+	[sound play];
 }

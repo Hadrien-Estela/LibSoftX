@@ -24,7 +24,7 @@
 # define		SX_WINDOW_CLOSABLE 		2
 # define		SX_WINDOW_MINIMIZABLE 	4
 # define		SX_WINDOW_RESIZABLE 	8
-# define		SX_OPENGL_CONTEXT		16  // Not implemented at this time
+# define		SX_OPENGL_CONTEXT		16
 
 /*
 ** Window Event Type
@@ -360,7 +360,42 @@ void			*sx_str_to_surface(void *font, char *s, uint32_t f, uint32_t b);
 
 
 /*
-** ---------------------- Audio
+** ---------------------- Audio Sounds
 */
+
+/*
+** Open .wav an maybe other audio types
+*/
+void			*sx_open_sound(char *audio_file);
+
+/*
+** Set volume for a sound
+*/
+void			sx_set_sound_volume(void *sound_ptr, float volume);
+
+/*
+** play a sound. if loop = 1 the sound will be repeated
+*/
+void			sx_play_sound(void *sound_ptr, int loop);
+
+/*
+** Stop a sound
+*/
+void			sx_stop_sound(void *sound_ptr);
+
+/*
+** Pause sound
+*/
+void			sx_pause_sound(void *sound_ptr);
+
+/*
+** Resume sound
+*/
+void			sx_resume_sound(void *sound_ptr);
+
+/*
+** Close a sound
+*/
+void			sx_close_sound(void *sound_ptr);
 
 #endif

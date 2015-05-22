@@ -40,6 +40,8 @@ void			sx_destroy_window(void *win_ptr)
 	t_sx_win		*sx_mywin;
 	t_sx_win		*sx_wprev;
 
+	if (!win_ptr)
+		return ;
 	sx = SX_APP;
 	sx_wprev = NULL;
 	sx_wp = (t_sx_win*)sx->win_lst;
@@ -57,4 +59,5 @@ void			sx_destroy_window(void *win_ptr)
 	 	sx_wprev = sx_wp;
 	 	sx_wp = sx_wp->next;
 	}
+	win_ptr = NULL;
 }

@@ -16,6 +16,8 @@ void	sx_set_expose(void *win_ptr, void (*f)(void *data), void *data)
 {
 	t_sx_win		*sx_win_p;
 
+	if (!win_ptr)
+		return ;
 	sx_win_p = (t_sx_win*)win_ptr;
 	sx_win_p->expose_func = f;
 	sx_win_p->expose_params = data;

@@ -16,6 +16,8 @@ void		sx_set_key_repeat(void *win_ptr, int boolean)
 {
 	t_sx_win		*sx_win;
 
+	if (!win_ptr)
+		return ;
 	sx_win = (t_sx_win*)win_ptr;
 	[sx_win->win_ptr setRepeat:boolean]; 
 }
