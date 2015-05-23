@@ -20,15 +20,8 @@
 - (id)initWithContentRect:(NSRect)contentRect styleMask:(NSUInteger)windowStyle sxWinPtr:(t_sx_win*)win title:(char*)windowTitle
 {
 	NSView		*contentView;
-	int 		glContext;
-
-	glContext = 0;
+	
 	repeat = 1;
-	if (windowStyle & SX_OPENGL_CONTEXT)
-	{
-		glContext = 1;
-		windowStyle -= SX_OPENGL_CONTEXT;
-	}
 	visibleCursor = TRUE;
 	self = [super initWithContentRect: contentRect
 					styleMask: windowStyle
@@ -45,10 +38,7 @@
 	[self setAcceptsMouseMovedEvents:YES];
 	[self setReleasedWhenClosed:NO];
 	[self setBackgroundColor: [NSColor blackColor]];
-	if (glContext)
-		contentView = [[SxOpenGlView alloc] initWithFrame:contentRect winPtr:self];
-	else
-		contentView = [[SxView alloc] initWithFrame:contentRect winPtr:self];
+	contentView = [[SxView alloc] initWithFrame:contentRect winPtr:self];
 	[self setContentView:contentView];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(expose) name:@"NSWindowDidDeminiaturizeNotification" object:self];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resize) name:@"NSWindowDidEndLiveResizeNotification" object:self];

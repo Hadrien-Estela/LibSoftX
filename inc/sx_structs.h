@@ -68,19 +68,6 @@ typedef struct s_sx 	t_sx;
 
 @end
 
-@interface 				SxOpenGlView: NSOpenGLView
-{
-   SxWindow 			*window;
-   NSOpenGLContext		*context;
-   CVDisplayLinkRef 	displayLink;
-}
-
-- (id)initWithFrame:(NSRect)frameRect winPtr:(SxWindow*)pWindow;
-- (void)putPixel:(NSPoint)pixel color:(int32_t)rgb;
-- (void)clear;
-
-@end
-
 @interface 		SxLoop:	NSObject
 {
   t_sx			*sx_p;

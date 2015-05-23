@@ -24,7 +24,6 @@
 # define		SX_WINDOW_CLOSABLE		2
 # define		SX_WINDOW_MINIMIZABLE	4
 # define		SX_WINDOW_RESIZABLE		8
-# define		SX_OPENGL_CONTEXT		16
 
 /*
 ** Window Event Type

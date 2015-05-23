@@ -6,7 +6,7 @@
 #    By: hestela <hestela@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/05/09 01:21:34 by hestela           #+#    #+#              #
-#    Updated: 2015/05/22 19:37:43 by hestela          ###   ########.fr        #
+#    Updated: 2015/05/23 20:00:10 by hestela          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -18,7 +18,6 @@ NAME		= libsoftx.a
 
 SOURCES		= src/SxWindow.m \
 			src/SxView.m \
-			src/SxOpenGlView.m \
 			src/sx_open.m \
 			src/sx_close.m \
 			src/sx_new_window.m \
