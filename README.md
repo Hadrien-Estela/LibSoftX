@@ -1,7 +1,7 @@
 # LibSoftX
 C Simple Graphic library for OSX 10.7 an highter using Cocoa
 
-compile with framework AppKit and OpenGL
+compile with framework AppKit
 
 - Create and manage windows
 - draw in window context
