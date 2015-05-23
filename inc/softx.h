@@ -6,7 +6,7 @@
 /*   By: hestela <hestela@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/09 01:24:51 by hestela           #+#    #+#             */
-/*   Updated: 2015/05/09 02:23:49 by hestela          ###   ########.fr       */
+/*   Updated: 2015/05/23 14:05:34 by hestela          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,22 @@
 /*
 ** Window Style Masks
 */
-# define		SX_WINDOW_NO_MASK 		0
-# define		SX_WINDOW_TITLED 		1
-# define		SX_WINDOW_CLOSABLE 		2
-# define		SX_WINDOW_MINIMIZABLE 	4
-# define		SX_WINDOW_RESIZABLE 	8
+# define		SX_WINDOW_NO_MASK		0
+# define		SX_WINDOW_TITLED		1
+# define		SX_WINDOW_CLOSABLE		2
+# define		SX_WINDOW_MINIMIZABLE	4
+# define		SX_WINDOW_RESIZABLE		8
 # define		SX_OPENGL_CONTEXT		16
 
 /*
 ** Window Event Type
 */
-# define		SX_EVENT_RESIZE 		1
-# define		SX_EVENT_CLOSE 			2
-# define		SX_EVENT_MOVE 			3
+# define		SX_EVENT_RESIZE			1
+# define		SX_EVENT_CLOSE			2
+# define		SX_EVENT_MOVE			3
 # define		SX_EVENT_KEY_DOWN		4
-# define		SX_EVENT_KEY_UP 		5
-# define		SX_EVENT_MOUSE_DOWN 	6
+# define		SX_EVENT_KEY_UP			5
+# define		SX_EVENT_MOUSE_DOWN		6
 # define		SX_EVENT_MOUSE_UP		7
 # define		SX_EVENT_MOUSE_MOVE		8
 # define		SX_EVENT_MOUSE_SCROLL	9
@@ -45,23 +45,23 @@
 /*
 ** Mouse Buttons
 */
-# define		SX_BUTTON_LEFT		1
-# define		SX_BUTTON_RIGHT		2
-# define		SX_BUTTON_MIDDLE	3
-# define		SX_BUTTON_4			4
-# define		SX_BUTTON_5			5
+# define		SX_BUTTON_LEFT			1
+# define		SX_BUTTON_RIGHT			2
+# define		SX_BUTTON_MIDDLE		3
+# define		SX_BUTTON_4				4
+# define		SX_BUTTON_5				5
 
-# define		SX_SCROLL_UP		1
-# define		SX_SCROLL_DOWN		2
+# define		SX_SCROLL_UP			1
+# define		SX_SCROLL_DOWN			2
 
 /*
 ** Key Masks
 */
-# define		SX_KEY_MASK_NONE	1
-# define		SX_KEY_MASK_CTRL	2
-# define		SX_KEY_MASK_CMD		4
-# define		SX_KEY_MASK_ALT		8
-# define		SX_KEY_MASK_SHIFT	16
+# define		SX_KEY_MASK_NONE		1
+# define		SX_KEY_MASK_CTRL		2
+# define		SX_KEY_MASK_CMD			4
+# define		SX_KEY_MASK_ALT			8
+# define		SX_KEY_MASK_SHIFT		16
 
 /*
 ** Key Codes
@@ -159,7 +159,7 @@
 /*
 ** SoftX event structure
 */
-struct 			s_sx_event
+struct			s_sx_event
 {
 	int8_t		type;
 	uint32_t	key_mask;
@@ -364,12 +364,13 @@ void			*sx_str_to_surface(void *font, char *s, uint32_t f, uint32_t b);
 */
 
 /*
-** Open .wav an maybe other audio types
+** Open .wav .mp3 and maybe others audio file types
 */
 void			*sx_open_sound(char *audio_file);
 
 /*
 ** Set volume for a sound
+** Range between 0.0 and 1.0 
 */
 void			sx_set_sound_volume(void *sound_ptr, float volume);
 
