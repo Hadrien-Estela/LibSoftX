@@ -10,3 +10,8 @@ compile with framework AppKit
 - Open and play sounds
 
 comming soon: OpenGL Context
+
+Maj log:
+  -v1.1b: - fix mouse move event speed detection
+          - sx_update_window (flush the context, call after context modifications)
+          - sx_blit_surface use now the Alpha Byte
