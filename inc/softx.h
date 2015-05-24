@@ -56,11 +56,11 @@
 /*
 ** Key Masks
 */
-# define		SX_KEY_MASK_NONE		1
-# define		SX_KEY_MASK_CTRL		2
-# define		SX_KEY_MASK_CMD			4
-# define		SX_KEY_MASK_ALT			8
-# define		SX_KEY_MASK_SHIFT		16
+# define		SX_KEY_MASK_NONE		0
+# define		SX_KEY_MASK_CTRL		1
+# define		SX_KEY_MASK_CMD			2
+# define		SX_KEY_MASK_ALT			4
+# define		SX_KEY_MASK_SHIFT		8
 
 /*
 ** Key Codes
@@ -154,7 +154,6 @@
 #  define TRUE 1
 # endif
 
-
 /*
 ** SoftX event structure
 */
@@ -174,7 +173,7 @@ struct			s_sx_event
 };
 
 /*
-** -------------------- Sx functions
+** -------------------- Sx
 */
 
 /*
@@ -207,7 +206,7 @@ void			sx_display_cursor(int boolean);
 void			sx_set_cursor_position(size_t x, size_t y);
 
 /*
-** -------------------- SxWindow functions
+** -------------------- SxWindow
 */
 
 /*
@@ -225,7 +224,7 @@ void			*sx_new_window(size_t x, size_t y, char *title, uint32_t flags);
 void			sx_destroy_window(void *win_ptr);
 
 /*
-** Clear the window context (useless if you use a surface such as frame buffer)
+** Clear the window context
 */
 void			sx_clear_window(void *win_ptr);
 
@@ -290,7 +289,7 @@ void			sx_break_loop(void);
 int				sx_pool_event(void *win_ptr, struct s_sx_event *event);
 
 /*
-** --------------------- Draw functions
+** --------------------- Draw
 */
 
 /*
@@ -300,7 +299,7 @@ int				sx_pool_event(void *win_ptr, struct s_sx_event *event);
 void			sx_put_pixel(void *win_ptr, size_t x, size_t y, int32_t rgb);
 
 /*
-** --------------------- Surfaces functions 
+** --------------------- Surfaces
 */
 
 /*
@@ -318,8 +317,7 @@ void			sx_destroy_surface(void *surface);
 ** - 32 Bits per pixel
 ** - 1 Byte per component
 ** - Byte order: little endian [BGRA], casted in uint32_t order is [0xAARRGGBB])
-** the alpha channel is skiped by the blit surface function.
-** You must blending colors yourself
+** 0xFF = 100% opacity
 */
 uint32_t		*sx_surface_data(void *surface, size_t *width, size_t *height);
 
@@ -334,13 +332,17 @@ void			sx_blit_surface(void *win, void *surface, size_t x, size_t y);
 void			sx_clear_surface(void *surface);
 
 /*
-** --------------------- Images and fonts
+** --------------------- Images
 */
 
 /*
 ** Create an sx surface from JPEG or PNG file
 */
 void			*sx_surface_from_image(const char *file);
+
+/*
+** --------------------- Fonts
+*/
 
 /*
 ** open a ttf font and return a pointer on it
@@ -359,7 +361,7 @@ void			*sx_str_to_surface(void *font, char *s, uint32_t f, uint32_t b);
 
 
 /*
-** ---------------------- Audio Sounds
+** ---------------------- Audio
 */
 
 /*

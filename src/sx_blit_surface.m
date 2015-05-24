@@ -19,6 +19,8 @@ void		sx_blit_surface(void *win, void *surface, size_t x, size_t y)
 	NSSize					surface_size;
 	NSPoint					to_place;
 
+	if (!win || !surface)
+		return ;
 	sx_win = (t_sx_win*)win;
 	surface_t = (t_sx_surface*)surface;
 	surface_size.width = surface_t->width;

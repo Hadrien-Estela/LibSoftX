@@ -64,7 +64,7 @@ typedef struct s_sx 	t_sx;
 - (void)putPixel:(NSPoint)pixel color:(int32_t)rgb;
 - (void)blitSurface:(uint32_t*)surface size:(NSSize)size to:(NSPoint)place;
 - (void)clear;
-- (void)testFont;
+- (void)updateContext;
 
 @end
 

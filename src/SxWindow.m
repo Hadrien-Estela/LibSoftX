@@ -20,7 +20,7 @@
 - (id)initWithContentRect:(NSRect)contentRect styleMask:(NSUInteger)windowStyle sxWinPtr:(t_sx_win*)win title:(char*)windowTitle
 {
 	NSView		*contentView;
-	
+
 	repeat = 1;
 	visibleCursor = TRUE;
 	self = [super initWithContentRect: contentRect

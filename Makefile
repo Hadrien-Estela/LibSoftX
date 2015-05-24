@@ -6,7 +6,7 @@
 #    By: hestela <hestela@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/05/09 01:21:34 by hestela           #+#    #+#              #
-#    Updated: 2015/05/23 20:00:10 by hestela          ###   ########.fr        #
+#    Updated: 2015/05/24 11:14:54 by hestela          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -49,7 +49,8 @@ SOURCES		= src/SxWindow.m \
 			src/sx_stop_sound.m \
 			src/sx_set_sound_volume.m \
 			src/sx_pause_sound.m \
-			src/sx_resume_sound.m
+			src/sx_resume_sound.m \
+			src/sx_update_window.m
 
 HEADERS		= inc/
 

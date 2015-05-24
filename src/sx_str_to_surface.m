@@ -13,37 +13,6 @@
 #include "sx_structs.h"
 #include <stdio.h>
 
-void			test_font(void *win)
-{
-	t_sx_win	*sx_win;
-
-	sx_win = (t_sx_win*)win;
-	[[sx_win->win_ptr contentView] testFont];
-}
-
-static void		big_to_litte_endian(uint32_t *pixel)
-{
-	uint8_t 	*byte;
-	uint8_t 	tmp;
-
-	byte = (uint8_t*)pixel;
-	tmp = byte[0];
-	byte[0] = byte[2];
-	byte[2] = tmp;
-}
-
-static void		change_endian(uint32_t *array, size_t size)
-{
-	size_t		i;
-
-	i = 0;
-	while (i < size)
-	{
-		big_to_litte_endian(&array[i]);
-		i++;
-	}
-}
-
 void		*surface_from_context(CGContextRef ctx)
 {
 	CGImageRef 				image;
@@ -59,7 +28,6 @@ void		*surface_from_context(CGContextRef ctx)
 	dataProvider = CGImageGetDataProvider(image);
 	imageData = CGDataProviderCopyData(dataProvider);
 	memcpy(surface->buffer, CFDataGetBytePtr(imageData), sizeof(uint32_t) * (surface->width * surface->height));
-	change_endian(surface->buffer, surface->width * surface->height);
 	CGImageRelease(image);
 	CFRelease(imageData);
 	free(CGBitmapContextGetData(ctx));
@@ -87,7 +55,7 @@ CGContextRef 		createContextFromLine(CTLineRef line, uint32_t bg)
 	CGContextClearRect(ctx, CGRectMake(0.0, 0.0, width, height));
 	if (((bg >> 24) & 0xFF) > 0x00)
 	{
-		CGContextSetRGBFillColor(ctx, (bg & 0xFF) / 255.0f, ((bg >> 8) & 0xFF) / 255.0f, ((bg >> 16) & 0xFF) / 255.0f, ((bg >> 24) & 0xFF) / 255.0f);
+		CGContextSetRGBFillColor(ctx, ((bg >> 16) & 0xFF) / 255.0f, ((bg >> 8) & 0xFF) / 255.0f, (bg & 0xFF) / 255.0f, ((bg >> 24) & 0xFF) / 255.0f);
 		CGContextFillRect(ctx, CGRectMake(0.0, 0.0, width, height));
 	}	
 	return (ctx);
@@ -116,9 +84,9 @@ void			*sx_str_to_surface(void *font, char *s, uint32_t f, uint32_t b)
 	if (!font || !s)
 		return (NULL);
 	//foreground color
-	foreground = [NSColor colorWithCalibratedRed:(f & 0xFF) / 255.0f
+	foreground = [NSColor colorWithCalibratedRed:((f >> 16) & 0xFF) / 255.0f
 											green:((f >> 8) & 0xFF) / 255.0f
-											blue:((f >> 16) & 0xFF) / 255.0f
+											blue:(f & 0xFF) / 255.0f
 											alpha:((f >> 24) & 0xFF) / 255.0f];
 
 	// Create the string
