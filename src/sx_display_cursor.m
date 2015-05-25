@@ -14,18 +14,6 @@
 
 void		sx_display_cursor(int boolean)
 {
-	t_sx_win	*win_lst;
-
-	win_lst = SX_APP->win_lst;
-
-	while (win_lst)
-	{
-		if (boolean == FALSE)
-			[win_lst->win_ptr setCursorVisibility:FALSE];
-		else if (boolean == TRUE)
-			[win_lst->win_ptr setCursorVisibility:TRUE];
-		win_lst = win_lst->next;
-	}
 	if (boolean == FALSE)
 		[NSCursor hide];
 	else if (boolean == TRUE)

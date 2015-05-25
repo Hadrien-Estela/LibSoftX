@@ -28,7 +28,6 @@ typedef struct s_sx 	t_sx;
 {
 	t_sx_win			*sx_win;
 	int					repeat;
-	int 				visibleCursor;
 }
 
 - (id)initWithContentRect:(NSRect)contentRect styleMask:(NSUInteger)windowStyle sxWinPtr:(t_sx_win*)win title:(char*)windowTitle;
@@ -37,7 +36,6 @@ typedef struct s_sx 	t_sx;
 - (void)resize;
 - (void)close;
 - (void)move;
-- (void)setCursorVisibility:(int)boolean;
 - (void)putPixel:(NSPoint)pixel color:(int32_t)rgb;
 - (void)mouseMoved:(NSEvent *)theEvent;
 - (void)mouseDown:(NSEvent *)theEvent;

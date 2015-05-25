@@ -6,7 +6,7 @@
 #    By: hestela <hestela@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/05/09 01:21:34 by hestela           #+#    #+#              #
-#    Updated: 2015/05/24 11:14:54 by hestela          ###   ########.fr        #
+#    Updated: 2015/05/25 14:28:42 by hestela          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -65,7 +65,7 @@ RESSOURCES	=
 #******************************************************************************#
 
 CC		= gcc
-CCFLAGS	= -Wextra -Wall -Werror -Wno-unused-parameter
+CCFLAGS	= -Wextra -Wall -Werror #-Wno-unused-parameter
 OBJECTS= $(subst src,obj,$(subst .c,.o,$(subst .m,.o,$(SOURCES))))
 
 #******************************************************************************#

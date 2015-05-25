@@ -22,7 +22,6 @@
 	NSView		*contentView;
 
 	repeat = 1;
-	visibleCursor = TRUE;
 	self = [super initWithContentRect: contentRect
 					styleMask: windowStyle
                 	backing: NSBackingStoreBuffered
@@ -49,11 +48,6 @@
 - (void)putPixel:(NSPoint)pixel color:(int32_t)rgb
 {
 	[[self contentView] putPixel:pixel color:rgb];
-}
-
-- (void)setCursorVisibility:(int)boolean
-{
-	visibleCursor = boolean;
 }
 
 - (void)expose
@@ -230,13 +224,6 @@
 			event->next = NULL;
 			sx_win->push_event(sx_win, event);
 		}
-	}
-	if (visibleCursor == FALSE)
-	{
-		NSRect			nframe;
-
-		nframe = [self contentRectForFrameRect: [self frame]];
-		sx_set_cursor_position(nframe.origin.x + nframe.size.width / 2, nframe.origin.y + nframe.size.height / 2);
 	}
 }
 
@@ -422,13 +409,6 @@
 			sx_win->push_event(sx_win, event);
 		}
 	}
-	if (visibleCursor == FALSE)
-	{
-		NSRect			nframe;
-
-		nframe = [self contentRectForFrameRect: [self frame]];
-		sx_set_cursor_position(nframe.origin.x + nframe.size.width / 2, nframe.origin.y + nframe.size.height / 2);
-	}
 }
 
 
@@ -520,13 +500,6 @@
 			event->next = NULL;
 			sx_win->push_event(sx_win, event);
 		}
-	}
-	if (visibleCursor == FALSE)
-	{
-		NSRect			nframe;
-
-		nframe = [self contentRectForFrameRect: [self frame]];
-		sx_set_cursor_position(nframe.origin.x + nframe.size.width / 2, nframe.origin.y + nframe.size.height / 2);
 	}
 }
 
@@ -629,13 +602,6 @@
 			event->next = NULL;
 			sx_win->push_event(sx_win, event);
 		}
-	}
-	if (visibleCursor == FALSE)
-	{
-		NSRect			nframe;
-
-		nframe = [self contentRectForFrameRect: [self frame]];
-		sx_set_cursor_position(nframe.origin.x + nframe.size.width / 2, nframe.origin.y + nframe.size.height / 2);
 	}
 }
 
