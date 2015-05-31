@@ -6,7 +6,7 @@
 #    By: hestela <hestela@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/05/09 01:21:34 by hestela           #+#    #+#              #
-#    Updated: 2015/05/25 14:28:42 by hestela          ###   ########.fr        #
+#    Updated: 2015/05/31 01:20:13 by hestela          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -14,7 +14,7 @@
 #*								PROJECT SOURCES 			    			  *#
 #******************************************************************************#
 
-NAME		= libsoftx.a
+NAME		= libsoftx
 
 SOURCES		= src/SxWindow.m \
 			src/SxView.m \
@@ -56,7 +56,7 @@ HEADERS		= inc/
 
 LIBRARIES	=
 
-FRAMEWORKS	=
+FRAMEWORKS	= -framework AppKit
 
 RESSOURCES	=
 
@@ -65,7 +65,7 @@ RESSOURCES	=
 #******************************************************************************#
 
 CC		= gcc
-CCFLAGS	= -Wextra -Wall -Werror #-Wno-unused-parameter
+CCFLAGS	= -Wextra -Wall -Werror
 OBJECTS= $(subst src,obj,$(subst .c,.o,$(subst .m,.o,$(SOURCES))))
 
 #******************************************************************************#
@@ -74,14 +74,25 @@ OBJECTS= $(subst src,obj,$(subst .c,.o,$(subst .m,.o,$(SOURCES))))
 
 .SILENT:
 
-all: build/$(NAME)
+all: static
 
-build/$(NAME): directories $(OBJECTS)
-	ar rc build/$(NAME) $(OBJECTS)
-	ranlib build/$(NAME)
+static: build/$(NAME).a
+
+dynamic: build/$(NAME).dylib
+
+build/$(NAME).a: directories $(OBJECTS)
+	ar rc build/$(NAME).a $(OBJECTS)
+	ranlib build/$(NAME).a
 	cp ./inc/softx.h ./build/softx.h
 	printf "\e[32m----------------------------------\e[36m\n"
-	printf "\e[32m[✔]\e[36m $(NAME)\n"
+	printf "\e[32m[✔]\e[36m $(NAME).a\n"
+	printf "\e[32m----------------------------------\e[36m\n"
+
+build/$(NAME).dylib: directories $(OBJECTS)
+	gcc $(OBJECTS) -dynamiclib $(FRAMEWORKS) -o build/$(NAME).dylib
+	cp ./inc/softx.h ./build/softx.h
+	printf "\e[32m----------------------------------\e[36m\n"
+	printf "\e[32m[✔]\e[36m $(NAME).dylib\n"
 	printf "\e[32m----------------------------------\e[36m\n"
 
 obj/%.o: src/%.c
@@ -151,8 +162,3 @@ delsubmodule:
 	@read -p "Enter submodule PATH: " path;\
 	git submodule deinit -f $$path;\
 	git rm -f $$path
-
-#######################
-
-test_app:
-	gcc test/main.c -L./build -lsoftx -I./inc -framework AppKit -framework OpenGl

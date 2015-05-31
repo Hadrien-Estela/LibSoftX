@@ -54,8 +54,6 @@
 {
 	t_event_pool		*event;
 
-	if (sx_win->expose_func)
-		sx_win->expose_func(sx_win->expose_params);
 	event = (t_event_pool*)malloc(sizeof(t_event_pool));
 	event->eventType = SX_EVENT_EXPOSE;
  	event->eventKeyMask = 0;
@@ -614,25 +612,30 @@
 
 	cursor = [theEvent locationInWindow];
 	frame = [[sx_win->win_ptr contentView] frame];
+	event = (t_event_pool*)malloc(sizeof(t_event_pool));
+	event->eventType = SX_EVENT_MOUSE_UP;
+ 	event->eventKeyMask = 0;
+ 	event->eventKey = 0;
+	event->eventButton = SX_BUTTON_LEFT;
 	if (cursor.x < frame.size.width - 3 && cursor.y < frame.size.height - 3
-		&& cursor.x > 3 && cursor.y > 3)
+	&& cursor.x > 3 && cursor.y > 3)
 	{
-		event = (t_event_pool*)malloc(sizeof(t_event_pool));
-		event->eventType = SX_EVENT_MOUSE_UP;
-	 	event->eventKeyMask = 0;
-	 	event->eventKey = 0;
-		event->eventButton = SX_BUTTON_LEFT;
 		event->mouse_x = cursor.x;
 		event->mouse_y = cursor.y;
-		event->eventCharacter = 0;
-		event->global_x = 0;
-		event->global_y = 0;
-		event->delta_x = 0;
-		event->delta_y = 0;
-		event->time = time(NULL);
-		event->next = NULL;
-		sx_win->push_event(sx_win, event);
 	}
+	else
+	{
+		event->mouse_x = 0;
+		event->mouse_y = 0;
+	}
+	event->eventCharacter = 0;
+	event->global_x = 0;
+	event->global_y = 0;
+	event->delta_x = 0;
+	event->delta_y = 0;
+	event->time = time(NULL);
+	event->next = NULL;
+	sx_win->push_event(sx_win, event);
 }
 
 
@@ -644,25 +647,30 @@
 
 	cursor = [theEvent locationInWindow];
 	frame = [[sx_win->win_ptr contentView] frame];
+	event = (t_event_pool*)malloc(sizeof(t_event_pool));
+	event->eventType = SX_EVENT_MOUSE_UP;
+ 	event->eventKeyMask = 0;
+ 	event->eventKey = 0;
+	event->eventButton = SX_BUTTON_RIGHT;
 	if (cursor.x < frame.size.width - 3 && cursor.y < frame.size.height - 3
-		&& cursor.x > 3 && cursor.y > 3)
+	&& cursor.x > 3 && cursor.y > 3)
 	{
-		event = (t_event_pool*)malloc(sizeof(t_event_pool));
-		event->eventType = SX_EVENT_MOUSE_UP;
-	 	event->eventKeyMask = 0;
-	 	event->eventKey = 0;
-		event->eventButton = SX_BUTTON_RIGHT;
 		event->mouse_x = cursor.x;
 		event->mouse_y = cursor.y;
-		event->eventCharacter = 0;
-		event->global_x = 0;
-		event->global_y = 0;
-		event->delta_x = 0;
-		event->delta_y = 0;
-		event->time = time(NULL);
-		event->next = NULL;
-		sx_win->push_event(sx_win, event);
 	}
+	else
+	{
+		event->mouse_x = 0;
+		event->mouse_y = 0;
+	}
+	event->eventCharacter = 0;
+	event->global_x = 0;
+	event->global_y = 0;
+	event->delta_x = 0;
+	event->delta_y = 0;
+	event->time = time(NULL);
+	event->next = NULL;
+	sx_win->push_event(sx_win, event);
 }
 
 - (void)otherMouseUp:(NSEvent *)theEvent
@@ -673,30 +681,35 @@
 
 	cursor = [theEvent locationInWindow];
 	frame = [[sx_win->win_ptr contentView] frame];
+	event = (t_event_pool*)malloc(sizeof(t_event_pool));
+	event->eventType = SX_EVENT_MOUSE_UP;
+ 	event->eventKeyMask = 0;
+ 	event->eventKey = 0;
+	if ([theEvent buttonNumber] == 2)
+		event->eventButton = SX_BUTTON_MIDDLE;
+	else if ([theEvent buttonNumber] == 3)
+		event->eventButton = SX_BUTTON_4;
+	else
+		event->eventButton = SX_BUTTON_5;
 	if (cursor.x < frame.size.width - 3 && cursor.y < frame.size.height - 3
-		&& cursor.x > 3 && cursor.y > 3)
+	&& cursor.x > 3 && cursor.y > 3)
 	{
-		event = (t_event_pool*)malloc(sizeof(t_event_pool));
-		event->eventType = SX_EVENT_MOUSE_UP;
-	 	event->eventKeyMask = 0;
-	 	event->eventKey = 0;
-		if ([theEvent buttonNumber] == 2)
-			event->eventButton = SX_BUTTON_MIDDLE;
-		else if ([theEvent buttonNumber] == 3)
-			event->eventButton = SX_BUTTON_4;
-		else
-			event->eventButton = SX_BUTTON_5;
 		event->mouse_x = cursor.x;
 		event->mouse_y = cursor.y;
-		event->eventCharacter = 0;
-		event->global_x = 0;
-		event->global_y = 0;
-		event->delta_x = 0;
-		event->delta_y = 0;
-		event->time = time(NULL);
-		event->next = NULL;
-		sx_win->push_event(sx_win, event);
 	}
+	else
+	{
+		event->mouse_x = 0;
+		event->mouse_y = 0;
+	}
+	event->eventCharacter = 0;
+	event->global_x = 0;
+	event->global_y = 0;
+	event->delta_x = 0;
+	event->delta_y = 0;
+	event->time = time(NULL);
+	event->next = NULL;
+	sx_win->push_event(sx_win, event);
 }
 
 

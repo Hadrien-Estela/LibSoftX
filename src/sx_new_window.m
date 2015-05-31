@@ -52,8 +52,6 @@ static t_sx_win		*alloc_and_push(t_sx *sx_ptr)
 	
 	new_win = (t_sx_win*)malloc(sizeof(t_sx_win));
 	new_win->next = NULL;
-	new_win->expose_func = NULL;
-	new_win->expose_params = NULL;
 	new_win->eventPool = NULL;
 	new_win->push_event = push_event;
 	new_win->win_id = 0;

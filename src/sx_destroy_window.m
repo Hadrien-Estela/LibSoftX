@@ -35,29 +35,24 @@ static void		destroy(t_sx_win *win_p)
 
 void			sx_destroy_window(void *win_ptr)
 {
-	t_sx			*sx;
-	t_sx_win		*sx_wp;
 	t_sx_win		*sx_mywin;
-	t_sx_win		*sx_wprev;
+	t_sx_win		*it;
 
 	if (!win_ptr)
 		return ;
-	sx = SX_APP;
-	sx_wprev = NULL;
-	sx_wp = (t_sx_win*)sx->win_lst;
 	sx_mywin = (t_sx_win*)win_ptr;
-	while (sx_wp)
+	if (SX_APP->win_lst == sx_mywin)
 	{
-	 	if (sx_wp->win_id == sx_mywin->win_id)
-	 	{
-	 		if (!sx_wprev)
-	 			sx->win_lst = NULL;
-	 		else
-	 			sx_wprev->next = sx_wp->next;
-	 		destroy(sx_wp);
-	 	}
-	 	sx_wprev = sx_wp;
-	 	sx_wp = sx_wp->next;
+		SX_APP->win_lst = sx_mywin->next;
+		destroy(win_ptr);
+	}
+	else
+	{
+		it = SX_APP->win_lst;
+		while (it->next != sx_mywin->next)
+			it = it->next;
+		it->next = sx_mywin->next;
+		destroy(win_ptr);
 	}
 	win_ptr = NULL;
 }
