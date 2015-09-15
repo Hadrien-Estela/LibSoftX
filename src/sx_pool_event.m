@@ -10,7 +10,7 @@
 //                                                                            //
 // ************************************************************************** //
 
-#include "sx_structs.h"
+#include "sx_structs.hpp"
 #include <time.h>
 #include "softx.h"
 

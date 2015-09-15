@@ -10,7 +10,7 @@
 //                                                                            //
 // ************************************************************************** //
 
-#include "sx_structs.h"
+#include "sx_structs.hpp"
 
 void				sx_clear_window(void *win_ptr)
 {

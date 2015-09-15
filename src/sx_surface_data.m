@@ -10,7 +10,7 @@
 //                                                                            //
 // ************************************************************************** //
 
-#include "sx_structs.h"
+#include "sx_structs.hpp"
 
 uint32_t		*sx_surface_data(void *surface, size_t *width, size_t *height)
 {

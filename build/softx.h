@@ -6,7 +6,7 @@
 /*   By: hestela <hestela@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/09 01:24:51 by hestela           #+#    #+#             */
-/*   Updated: 2015/05/23 14:05:34 by hestela          ###   ########.fr       */
+/*   Updated: 2015/08/14 14:36:02 by hestela          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,14 @@
 /*
 ** Window Style Masks
 */
-# define SX_WINDOW_NO_MASK		0
-# define SX_WINDOW_TITLED		1
-# define SX_WINDOW_CLOSABLE		2
-# define SX_WINDOW_MINIMIZABLE	4
-# define SX_WINDOW_RESIZABLE	8
+# define SX_WINDOW_NO_MASK			0
+# define SX_WINDOW_TITLED			1
+# define SX_WINDOW_CLOSABLE			2
+# define SX_WINDOW_MINIMIZABLE		4
+# define SX_WINDOW_RESIZABLE		8
+# define SX_WINDOW_KEEP_RATIO		16
+# define SX_WINDOW_OPENGL3_CONTEXT	32
+# define SX_WINDOW_OPENGL4_CONTEXT	64
 
 /*
 ** Window Event Type
@@ -288,6 +291,12 @@ void			sx_set_key_repeat(void *win_ptr, int boolean);
 ** Update the window context
 */
 void			sx_update_window(void *win_ptr);
+
+/*
+** Set Current Context (OpenGl)
+*/
+
+void			sx_set_current_context(void *win_ptr);
 
 /*
 ** --------------------- Main running loop functions

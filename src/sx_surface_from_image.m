@@ -10,7 +10,7 @@
 //                                                                            //
 // ************************************************************************** //
 
-#include "sx_structs.h"
+#include "sx_structs.hpp"
 #include <sys/mman.h>
 #include <fcntl.h>
 #include <sys/stat.h>

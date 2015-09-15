@@ -10,8 +10,9 @@
 //                                                                            //
 // ************************************************************************** //
 
-#include "sx_structs.h"
+#include "sx_structs.hpp"
 #include <stdlib.h>
+#include "softx.h"
 
 static void			push_event(t_sx_win *sx_win, t_event_pool *event)
 {
@@ -73,6 +74,10 @@ void			*sx_new_window(size_t x, size_t y, char *title, uint32_t flags)
 	t_sx_win	*new_win;
 
 	new_win = alloc_and_push(SX_APP);
+	if (flags & SX_WINDOW_OPENGL3_CONTEXT || flags & SX_WINDOW_OPENGL4_CONTEXT)
+		new_win->gl = 1;
+	else
+		new_win->gl = 0;
 	init_window(new_win, x, y, title, flags);
 	return ((void*)new_win);
 }

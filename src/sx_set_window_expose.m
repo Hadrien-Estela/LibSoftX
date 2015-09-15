@@ -10,7 +10,7 @@
 //                                                                            //
 // ************************************************************************** //
 
-#include "sx_structs.h"
+#include "sx_structs.hpp"
 
 void	sx_set_expose(void *win_ptr, void (*f)(void *data), void *data)
 {

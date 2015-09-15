@@ -10,7 +10,7 @@
 //                                                                            //
 // ************************************************************************** //
 
-#include "sx_structs.h"
+#include "sx_structs.hpp"
 #include <stdio.h>
 
 void		*surface_from_context(CGContextRef ctx)

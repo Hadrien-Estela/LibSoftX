@@ -10,7 +10,7 @@
 //                                                                            //
 // ************************************************************************** //
 
-#include "sx_structs.h"
+#include "sx_structs.hpp"
 
 void			sx_put_pixel(void *win_ptr, size_t x, size_t y, int32_t rgb)
 {

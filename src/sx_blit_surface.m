@@ -10,7 +10,7 @@
 //                                                                            //
 // ************************************************************************** //
 
-#include "sx_structs.h"
+#include "sx_structs.hpp"
 
 void		sx_blit_surface(void *win, void *surface, size_t x, size_t y)
 {

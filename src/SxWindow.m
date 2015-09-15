@@ -10,7 +10,7 @@
 //                                                                            //
 // ************************************************************************** //
 
-#include "sx_structs.h"
+#include "sx_structs.hpp"
 #include <stdio.h>
 #include <time.h>
 #include "softx.h"
@@ -20,8 +20,15 @@
 - (id)initWithContentRect:(NSRect)contentRect styleMask:(NSUInteger)windowStyle sxWinPtr:(t_sx_win*)win title:(char*)windowTitle
 {
 	NSView		*contentView;
+	int			keepRatio;
 
 	repeat = 1;
+	keepRatio = 0;
+	if (windowStyle & SX_WINDOW_KEEP_RATIO)
+	{
+		keepRatio = 1;
+		windowStyle -= SX_WINDOW_KEEP_RATIO;
+	}
 	self = [super initWithContentRect: contentRect
 					styleMask: windowStyle
                 	backing: NSBackingStoreBuffered
@@ -34,10 +41,15 @@
 		[self setTitle:title_string];
 		[title_string release];
 	}
+	if (keepRatio)
+		[self setAspectRatio:self.frame.size];
 	[self setAcceptsMouseMovedEvents:YES];
 	[self setReleasedWhenClosed:NO];
 	[self setBackgroundColor: [NSColor blackColor]];
-	contentView = [[SxView alloc] initWithFrame:contentRect winPtr:self];
+	if (windowStyle & SX_WINDOW_OPENGL3_CONTEXT || windowStyle & SX_WINDOW_OPENGL4_CONTEXT)
+		contentView = [[SxOpenGlView alloc] initWithFrame:contentRect winPtr:self context:windowStyle];
+	else
+		contentView = [[SxView alloc] initWithFrame:contentRect winPtr:self];
 	[self setContentView:contentView];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(expose) name:@"NSWindowDidDeminiaturizeNotification" object:self];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resize) name:@"NSWindowDidEndLiveResizeNotification" object:self];

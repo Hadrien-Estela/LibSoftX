@@ -6,7 +6,7 @@
 #    By: hestela <hestela@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/05/09 01:21:34 by hestela           #+#    #+#              #
-#    Updated: 2015/05/31 01:20:13 by hestela          ###   ########.fr        #
+#    Updated: 2015/09/08 16:18:24 by hestela          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -18,6 +18,7 @@ NAME		= libsoftx
 
 SOURCES		= src/SxWindow.m \
 			src/SxView.m \
+			src/SxOpenGlView.m \
 			src/sx_open.m \
 			src/sx_close.m \
 			src/sx_new_window.m \
@@ -50,13 +51,14 @@ SOURCES		= src/SxWindow.m \
 			src/sx_set_sound_volume.m \
 			src/sx_pause_sound.m \
 			src/sx_resume_sound.m \
-			src/sx_update_window.m
+			src/sx_update_window.m \
+			src/sx_set_current_context.m
 
 HEADERS		= inc/
 
 LIBRARIES	=
 
-FRAMEWORKS	= -framework AppKit
+FRAMEWORKS	= -framework AppKit -framework OpenGL
 
 RESSOURCES	=
 

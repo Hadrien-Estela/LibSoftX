@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "sx_structs.h"
+#include "sx_structs.hpp"
 #include <stdlib.h>
 
 static void		destroy(t_sx_win *win_p)
