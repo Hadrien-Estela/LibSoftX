@@ -1,7 +1,8 @@
 # LibSoftX
 C Simple Graphic library for OSX 10.8 an highter using Cocoa
 
-compile with framework AppKit
+compile with -framework AppKit -framework OpenGL
+(softx.h respect the 42Born2Code standards)
 
 - Create and manage windows
 - Catch events on event pool for each window
