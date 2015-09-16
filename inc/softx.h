@@ -19,7 +19,7 @@
 /*
 ** Window Style Masks
 */
-# define SX_WINDOW_NO_MASK			0
+# define SX_WINDOW_BORDERLESS		0
 # define SX_WINDOW_TITLED			1
 # define SX_WINDOW_CLOSABLE			2
 # define SX_WINDOW_MINIMIZABLE		4
@@ -27,6 +27,7 @@
 # define SX_WINDOW_KEEP_RATIO		16
 # define SX_WINDOW_OPENGL3_CONTEXT	32
 # define SX_WINDOW_OPENGL4_CONTEXT	64
+# define SX_WINDOW_FULLSCREEN		128
 
 /*
 ** Window Event Type
@@ -53,6 +54,9 @@
 # define SX_BUTTON_4			4
 # define SX_BUTTON_5			5
 
+/*
+** Mouse Scroll
+*/
 # define SX_SCROLL_UP			1
 # define SX_SCROLL_DOWN			2
 
@@ -67,6 +71,7 @@
 
 /*
 ** Key Codes
+** (define SX_AZERTY in your code if you use an AZERTY keyboard)
 */
 # ifdef SX_AZERTY
 #  define SX_KEY_A			12
@@ -238,7 +243,7 @@ void			sx_set_cursor_position(size_t x, size_t y);
 ** window is centered at creation
 ** flags are window styles mask defines ex:
 ** SX_WINDOW_TITLED | SX_WINDOW_CLOSABLE | ...
-** the window is not visible by default use sx_display_window() funtion
+** the window is not visible by default use sx_display_window() function
 */
 void			*sx_new_window(size_t x, size_t y, char *title, uint32_t flags);
 
@@ -293,7 +298,7 @@ void			sx_set_key_repeat(void *win_ptr, int boolean);
 void			sx_update_window(void *win_ptr);
 
 /*
-** Set Current Context (OpenGl)
+** Set Current Context (for OpenGl context only!)
 */
 
 void			sx_set_current_context(void *win_ptr);
@@ -319,7 +324,7 @@ void			sx_break_loop(void);
 int				sx_pool_event(void *win_ptr, struct s_sx_event *event);
 
 /*
-** --------------------- Draw
+** --------------------- Draw (for Quartz context only!)
 */
 
 /*
@@ -329,7 +334,7 @@ int				sx_pool_event(void *win_ptr, struct s_sx_event *event);
 void			sx_put_pixel(void *win_ptr, size_t x, size_t y, int32_t rgb);
 
 /*
-** --------------------- Surfaces
+** --------------------- Surfaces (for Quartz context only!)
 */
 
 /*
@@ -362,7 +367,7 @@ void			sx_blit_surface(void *win, void *surface, size_t x, size_t y);
 void			sx_clear_surface(void *surface);
 
 /*
-** --------------------- Images
+** --------------------- Images (for Quartz context only!)
 */
 
 /*
@@ -371,7 +376,7 @@ void			sx_clear_surface(void *surface);
 void			*sx_surface_from_image(const char *file);
 
 /*
-** --------------------- Fonts
+** --------------------- Fonts (for Quartz context only!)
 */
 
 /*

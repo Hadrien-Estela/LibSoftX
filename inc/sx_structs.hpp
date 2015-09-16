@@ -29,6 +29,7 @@ typedef struct s_sx			t_sx;
 {
 	t_sx_win				*sx_win;
 	int						repeat;
+	bool 					fullscreen;
 }
 
 - (id)initWithContentRect: (NSRect)contentRect

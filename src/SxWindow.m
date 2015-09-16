@@ -21,41 +21,88 @@
 {
 	NSView		*contentView;
 	int			keepRatio;
+	NSUInteger	openGLContext;
 
-	repeat = 1;
-	keepRatio = 0;
+	repeat = TRUE;
+	keepRatio = FALSE;
+	fullscreen = FALSE;
+	openGLContext = 0;
+
+	// Check keep ratio flag
 	if (windowStyle & SX_WINDOW_KEEP_RATIO)
 	{
-		keepRatio = 1;
+		keepRatio = TRUE;
 		windowStyle -= SX_WINDOW_KEEP_RATIO;
 	}
+
+	// Check OpenGl context Flag
+	if (windowStyle & SX_WINDOW_OPENGL3_CONTEXT)
+	{
+		openGLContext = SX_WINDOW_OPENGL3_CONTEXT;
+		windowStyle -= SX_WINDOW_OPENGL3_CONTEXT;
+	}
+	else if (windowStyle & SX_WINDOW_OPENGL4_CONTEXT)
+	{
+		openGLContext = SX_WINDOW_OPENGL4_CONTEXT;
+		windowStyle -= SX_WINDOW_OPENGL4_CONTEXT;
+	}
+
+	// Check Fullscreen flag
+	if (windowStyle & SX_WINDOW_FULLSCREEN)
+	{
+		fullscreen = TRUE;
+		windowStyle = SX_WINDOW_BORDERLESS;
+	}
+
+	// init window
 	self = [super initWithContentRect: contentRect
 					styleMask: windowStyle
                 	backing: NSBackingStoreBuffered
                 	defer: NO];
+	[self setAcceptsMouseMovedEvents:YES];
+	[self setReleasedWhenClosed:NO];
+	[self setBackgroundColor: [NSColor blackColor]];
 	sx_win = win;
-	if (windowTitle)
+
+	// set title
+	if (windowTitle && (windowStyle & SX_WINDOW_TITLED))
 	{
 		NSString		*title_string;
 		title_string = [NSString stringWithCString:windowTitle encoding:NSASCIIStringEncoding];
 		[self setTitle:title_string];
 		[title_string release];
 	}
+
+	// set ratio keeping
 	if (keepRatio)
-		[self setAspectRatio:self.frame.size];
-	[self setAcceptsMouseMovedEvents:YES];
-	[self setReleasedWhenClosed:NO];
-	[self setBackgroundColor: [NSColor blackColor]];
-	if (windowStyle & SX_WINDOW_OPENGL3_CONTEXT || windowStyle & SX_WINDOW_OPENGL4_CONTEXT)
-		contentView = [[SxOpenGlView alloc] initWithFrame:contentRect winPtr:self context:windowStyle];
+		[self setAspectRatio:self.frame.size];	
+
+	// set content View
+	if (openGLContext == SX_WINDOW_OPENGL3_CONTEXT || openGLContext == SX_WINDOW_OPENGL4_CONTEXT)
+		contentView = [[SxOpenGlView alloc] initWithFrame:contentRect winPtr:self context:openGLContext];
 	else
 		contentView = [[SxView alloc] initWithFrame:contentRect winPtr:self];
 	[self setContentView:contentView];
+
+	// Set events observers
+	[self setCollectionBehavior:(NSWindowCollectionBehaviorFullScreenPrimary)];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(expose) name:@"NSWindowDidDeminiaturizeNotification" object:self];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resize) name:@"NSWindowDidEndLiveResizeNotification" object:self];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(close) name:@"NSWindowWillCloseNotification" object:self];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resize) name:@"NSWindowDidEnterFullScreenNotification" object:self];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resize) name:@"NSWindowDidExitFullScreenNotification" object:self];
+
+	// start in full screen
+	if (fullscreen)
+	{
+		[NSMenu setMenuBarVisible:false];
+		[self toggleFullScreen:nil];
+	}
+
 	return (self);
 }
+
+- (BOOL)canBecomeKeyWindow { return YES; }
 
 - (void)putPixel:(NSPoint)pixel color:(int32_t)rgb
 {
@@ -91,7 +138,6 @@
 	event->eventType = SX_EVENT_RESIZE;
  	event->eventKeyMask = 0;
  	event->eventKey = 0;
-	event->eventButton = 0;
 	event->mouse_x = 0;
 	event->mouse_y = 0;
 	event->eventCharacter = 0;
@@ -109,6 +155,7 @@
 	t_event_pool		*event;
 
 	event = (t_event_pool*)malloc(sizeof(t_event_pool));
+	event->eventButton = 0;
 	event->eventType = SX_EVENT_MOVE;
  	event->eventKeyMask = 0;
  	event->eventKey = 0;

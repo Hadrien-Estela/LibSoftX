@@ -71,4 +71,9 @@
     [[self openGLContext] makeCurrentContext];
 }
 
+- (void)reshape
+{
+    glViewport(0, 0, [self bounds].size.width, [self bounds].size.height);
+}
+
 @end
