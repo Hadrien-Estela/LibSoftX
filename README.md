@@ -12,3 +12,7 @@ compile with -framework AppKit -framework OpenGL
 - Open and play sounds
 - Use an OpenGL3 or OpenGL4 context
 - Enable FullScreen application
+
+Future features:
+- Enter and exit fullscreen with function call
+- Set an own cursor image.
