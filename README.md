@@ -16,3 +16,5 @@ compile with -framework AppKit -framework OpenGL
 Future features:
 - Enter and exit fullscreen with function call
 - Set an own cursor image.
+
+PLEASE STAR THIS PROJECT IF YOU LIKE IT!
