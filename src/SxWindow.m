@@ -21,7 +21,6 @@
 {
 	NSView		*contentView;
 	int			keepRatio;
-	NSUInteger	openGLContext;
 
 	repeat = TRUE;
 	keepRatio = FALSE;
@@ -90,7 +89,9 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resize) name:@"NSWindowDidEndLiveResizeNotification" object:self];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(close) name:@"NSWindowWillCloseNotification" object:self];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resize) name:@"NSWindowDidEnterFullScreenNotification" object:self];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enteredFullScreen) name:@"NSWindowDidEnterFullScreenNotification" object:self];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resize) name:@"NSWindowDidExitFullScreenNotification" object:self];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(exitedFullScreen) name:@"NSWindowDidExitFullScreenNotification" object:self];
 
 	// start in full screen
 	if (fullscreen)
@@ -103,6 +104,16 @@
 }
 
 - (BOOL)canBecomeKeyWindow { return YES; }
+
+- (void)enteredFullScreen
+{
+	fullscreen = TRUE;
+}
+
+- (void)exitedFullScreen
+{
+	fullscreen = FALSE;
+}
 
 - (void)putPixel:(NSPoint)pixel color:(int32_t)rgb
 {

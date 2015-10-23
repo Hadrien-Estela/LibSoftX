@@ -1,25 +1,22 @@
 // ************************************************************************** //
 //                                                                            //
 //                                                        :::      ::::::::   //
-//   sx_set_current_context.m                           :+:      :+:    :+:   //
+//   sx_break_loop.m                                    :+:      :+:    :+:   //
 //                                                    +:+ +:+         +:+     //
 //   By: hestela <hestela@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
-//   Created: 2015/09/08 16:16:24 by hestela           #+#    #+#             //
-//   Updated: 2015/09/08 16:18:00 by hestela          ###   ########.fr       //
+//   Created: 2015/09/18 14:15:41 by hestela           #+#    #+#             //
+//   Updated: 2015/09/18 14:15:44 by hestela          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
 #include "sx_structs.hpp"
 
-void		sx_set_current_context(void *win_ptr)
+void			sx_break_loop(void)
 {
-	t_sx_win	*sx_win;
-	SxWindow	*window;
+	t_sx		*sx_p;
 
-	sx_win = (t_sx_win*)win_ptr;
-	window = (SxWindow*)sx_win->win_ptr;
-	if (!window->openGLContext)
-		return ;
-	[[window contentView] makeCurrentContext];
+	sx_p = SX_APP;
+	[NSObject cancelPreviousPerformRequestsWithTarget:sx_p->loop selector:@selector(loop) object:nil];
+	[NSApp stop:nil];
 }

@@ -19,12 +19,3 @@ void		sx_display_cursor(int boolean)
 	else if (boolean == TRUE)
 		[NSCursor unhide];
 }
-
-void		sx_set_cursor_position(size_t x, size_t y)
-{
-	CGPoint		point;
-
-	point.x = x;
-	point.y = SX_SCREEN_Y - y;
-	CGWarpMouseCursorPosition(point);
-}

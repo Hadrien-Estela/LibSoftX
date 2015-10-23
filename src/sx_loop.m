@@ -40,12 +40,3 @@ void			sx_loop(void (*loop_func)(void *datas), void *datas)
 	[sx_p->loop performSelector:@selector(loop) withObject:nil afterDelay:0.0];
 	[NSApp run];
 }
-
-void			sx_break_loop(void)
-{
-	t_sx		*sx_p;
-
-	sx_p = SX_APP;
-	[NSObject cancelPreviousPerformRequestsWithTarget:sx_p->loop selector:@selector(loop) object:nil];
-	[NSApp stop:nil];
-}

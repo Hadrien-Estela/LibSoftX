@@ -71,9 +71,10 @@
 
 /*
 ** Key Codes
-** (define SX_AZERTY in your code if you use an AZERTY keyboard)
+** (define SX_AZERTY_KEYBOARD before include "softx.h"
+** in your code if you use an AZERTY keyboard)
 */
-# ifdef SX_AZERTY
+# ifdef SX_AZERTY_KEYBOARD
 #  define SX_KEY_A			12
 # else
 #  define SX_KEY_A			0
@@ -89,7 +90,7 @@
 # define SX_KEY_J			38
 # define SX_KEY_K			40
 # define SX_KEY_L			37
-# ifdef SX_AZERTY
+# ifdef SX_AZERTY_KEYBOARD
 #  define SX_KEY_M			41
 # else
 #  define SX_KEY_M			46
@@ -97,7 +98,7 @@
 # define SX_KEY_N			45
 # define SX_KEY_O			31
 # define SX_KEY_P			35
-# ifdef SX_AZERTY
+# ifdef SX_AZERTY_KEYBOARD
 #  define SX_KEY_Q			0
 # else
 #  define SX_KEY_Q			12
@@ -107,14 +108,14 @@
 # define SX_KEY_T			17
 # define SX_KEY_U			32
 # define SX_KEY_V			9
-# ifdef SX_AZERTY
+# ifdef SX_AZERTY_KEYBOARD
 #  define SX_KEY_W			6
 # else
 #  define SX_KEY_W			13
 # endif
 # define SX_KEY_X			7
 # define SX_KEY_Y			16
-# ifdef SX_AZERTY
+# ifdef SX_AZERTY_KEYBOARD
 #  define SX_KEY_Z			13
 # else
 #  define SX_KEY_Z			6
@@ -229,7 +230,7 @@ void			sx_screen_dimensions(size_t *width, size_t *height);
 void			sx_display_cursor(int boolean);
 
 /*
-** You can set the cursor position yourself
+** Set the cursor position on Screen
 ** (0:0 is the left bottom corner)
 */
 void			sx_set_cursor_position(size_t x, size_t y);
@@ -288,6 +289,11 @@ void			sx_window_position(void *win_ptr, size_t *x, size_t *y);
 void			sx_window_size(void *win_ptr, size_t *width, size_t *height);
 
 /*
+** Know if window is in fullscreen.
+*/
+int				sx_window_is_fullscreen(void *win_ptr);
+
+/*
 ** Set the key repetition is enabled/disabled on a listened window
 */
 void			sx_set_key_repeat(void *win_ptr, int boolean);
@@ -300,7 +306,6 @@ void			sx_update_window(void *win_ptr);
 /*
 ** Set Current Context (for OpenGl context only!)
 */
-
 void			sx_set_current_context(void *win_ptr);
 
 /*

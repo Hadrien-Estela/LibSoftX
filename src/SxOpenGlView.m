@@ -49,8 +49,8 @@
 
     //Init View and context
     self = [super initWithFrame:frameRect pixelFormat:format];
-
     [self setNeedsDisplay:YES];
+    glEnable(GL_DEPTH_TEST);
     window = pWindow;
     return (self);
 }

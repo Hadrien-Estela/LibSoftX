@@ -1,25 +1,22 @@
 // ************************************************************************** //
 //                                                                            //
 //                                                        :::      ::::::::   //
-//   sx_set_current_context.m                           :+:      :+:    :+:   //
+//   sx_set_cursor_position.m                           :+:      :+:    :+:   //
 //                                                    +:+ +:+         +:+     //
 //   By: hestela <hestela@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
-//   Created: 2015/09/08 16:16:24 by hestela           #+#    #+#             //
-//   Updated: 2015/09/08 16:18:00 by hestela          ###   ########.fr       //
+//   Created: 2015/09/18 14:06:04 by hestela           #+#    #+#             //
+//   Updated: 2015/09/18 14:06:05 by hestela          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
 #include "sx_structs.hpp"
 
-void		sx_set_current_context(void *win_ptr)
+void		sx_set_cursor_position(size_t x, size_t y)
 {
-	t_sx_win	*sx_win;
-	SxWindow	*window;
+	CGPoint		point;
 
-	sx_win = (t_sx_win*)win_ptr;
-	window = (SxWindow*)sx_win->win_ptr;
-	if (!window->openGLContext)
-		return ;
-	[[window contentView] makeCurrentContext];
+	point.x = x;
+	point.y = SX_SCREEN_Y - y;
+	CGWarpMouseCursorPosition(point);
 }

@@ -23,11 +23,3 @@ void		*sx_new_surface(size_t width, size_t height)
 	bzero(surface->buffer, sizeof(uint32_t) * (width * height));
 	return ((void*)surface);
 }
-
-void		sx_clear_surface(void *surface)
-{
-	t_sx_surface		*buf;
-
-	buf = (t_sx_surface*)surface;
-	bzero(buf->buffer, sizeof(uint32_t) * (buf->width * buf->height));
-}

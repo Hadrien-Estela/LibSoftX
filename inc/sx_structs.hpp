@@ -29,7 +29,10 @@ typedef struct s_sx			t_sx;
 {
 	t_sx_win				*sx_win;
 	int						repeat;
+
+	@public
 	bool 					fullscreen;
+	NSUInteger				openGLContext;
 }
 
 - (id)initWithContentRect: (NSRect)contentRect
@@ -55,6 +58,8 @@ color: (int32_t)rgb;
 - (void)otherMouseUp: (NSEvent *)theEvent;
 - (void)keyDown: (NSEvent *)theEvent;
 - (void)keyUp: (NSEvent *)theEvent;
+- (void)enteredFullScreen;
+- (void)exitedFullScreen;
 
 @end
 
