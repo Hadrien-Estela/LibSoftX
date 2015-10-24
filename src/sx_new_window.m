@@ -74,10 +74,10 @@ void			*sx_new_window(size_t x, size_t y, char *title, uint32_t flags)
 	t_sx_win	*new_win;
 
 	new_win = alloc_and_push(SX_APP);
-	if (flags & SX_WINDOW_OPENGL3_CONTEXT || flags & SX_WINDOW_OPENGL4_CONTEXT)
-		new_win->gl = 1;
+	if (flags & SX_WINDOW_OPENGL4_CONTEXT)
+		new_win->gl = TRUE;
 	else
-		new_win->gl = 0;
+		new_win->gl = FALSE;
 	init_window(new_win, x, y, title, flags);
 	return ((void*)new_win);
 }

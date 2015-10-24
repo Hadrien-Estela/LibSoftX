@@ -11,6 +11,7 @@
 // ************************************************************************** //
 
 #include "sx_structs.hpp"
+#import <OpenGL/gl3.h>
 
 void		sx_display_window(void *win_ptr, int boolean)
 {
@@ -29,5 +30,10 @@ void		sx_display_window(void *win_ptr, int boolean)
 	{
 		[window makeKeyAndOrderFront:window];
 		[window display];
+	}
+	if (sx_wp->gl == TRUE)
+	{
+		glEnable(GL_DEPTH_TEST);
+		glEnable(GL_MULTISAMPLE);
 	}
 }

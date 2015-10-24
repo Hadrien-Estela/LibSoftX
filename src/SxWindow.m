@@ -35,12 +35,7 @@
 	}
 
 	// Check OpenGl context Flag
-	if (windowStyle & SX_WINDOW_OPENGL3_CONTEXT)
-	{
-		openGLContext = SX_WINDOW_OPENGL3_CONTEXT;
-		windowStyle -= SX_WINDOW_OPENGL3_CONTEXT;
-	}
-	else if (windowStyle & SX_WINDOW_OPENGL4_CONTEXT)
+	if (windowStyle & SX_WINDOW_OPENGL4_CONTEXT)
 	{
 		openGLContext = SX_WINDOW_OPENGL4_CONTEXT;
 		windowStyle -= SX_WINDOW_OPENGL4_CONTEXT;
@@ -77,7 +72,7 @@
 		[self setAspectRatio:self.frame.size];	
 
 	// set content View
-	if (openGLContext == SX_WINDOW_OPENGL3_CONTEXT || openGLContext == SX_WINDOW_OPENGL4_CONTEXT)
+	if (openGLContext == SX_WINDOW_OPENGL4_CONTEXT)
 		contentView = [[SxOpenGlView alloc] initWithFrame:contentRect winPtr:self context:openGLContext];
 	else
 		contentView = [[SxView alloc] initWithFrame:contentRect winPtr:self];

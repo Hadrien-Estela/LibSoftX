@@ -17,40 +17,31 @@
 #import <OpenGL/OpenGL.h>
 #import <OpenGL/gl3.h>
 
-
 @implementation SxOpenGlView
 
 - (id)initWithFrame:(NSRect)frameRect winPtr:(SxWindow*)pWindow context:(NSUInteger)ctx
 {
-    //Pix format for openGl3.0
-    NSOpenGLPixelFormatAttribute pixelFormatAttributes3[] =
-    {
-        NSOpenGLPFADepthSize, 32,
-        NSOpenGLPFADoubleBuffer,
-        NSOpenGLPFAOpenGLProfile, NSOpenGLProfileVersionLegacy,
-        0
-    };
-
     //Pix format for openGl4
     NSOpenGLPixelFormatAttribute pixelFormatAttributes4[] =
     {
         NSOpenGLPFADepthSize, 32,
         NSOpenGLPFADoubleBuffer,
+        NSOpenGLPFAAccelerated,
+        NSOpenGLPFAMultisample,
+        NSOpenGLPFASampleBuffers, (NSOpenGLPixelFormatAttribute)1,
+        NSOpenGLPFASamples, (NSOpenGLPixelFormatAttribute)4,
         NSOpenGLPFAOpenGLProfile, NSOpenGLProfileVersion4_1Core,
         0
     };
 
+    ctx = 0;
     // Create the format
     NSOpenGLPixelFormat *format;
-    if (ctx & SX_WINDOW_OPENGL3_CONTEXT)
-        format = [[NSOpenGLPixelFormat alloc] initWithAttributes:pixelFormatAttributes3];
-    else
-        format = [[NSOpenGLPixelFormat alloc] initWithAttributes:pixelFormatAttributes4];
+    format = [[NSOpenGLPixelFormat alloc] initWithAttributes:pixelFormatAttributes4];
 
     //Init View and context
     self = [super initWithFrame:frameRect pixelFormat:format];
     [self setNeedsDisplay:YES];
-    glEnable(GL_DEPTH_TEST);
     window = pWindow;
     return (self);
 }

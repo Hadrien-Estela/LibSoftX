@@ -6,7 +6,7 @@
 #    By: hestela <hestela@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/05/09 01:21:34 by hestela           #+#    #+#              #
-#    Updated: 2015/09/16 17:42:51 by hestela          ###   ########.fr        #
+#    Updated: 2015/09/18 16:13:16 by hestela          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -25,6 +25,7 @@ SOURCES		= src/SxWindow.m \
 			src/sx_destroy_window.m \
 			src/sx_display_window.m \
 			src/sx_loop.m \
+			src/sx_break_loop.m \
 			src/sx_pool_event.m \
 			src/sx_put_pixel.m \
 			src/sx_screen_dimensions.m \
@@ -33,10 +34,13 @@ SOURCES		= src/SxWindow.m \
 			src/sx_set_window_alpha.m \
 			src/sx_set_window_position.m \
 			src/sx_set_window_size.m \
+			src/sx_window_is_fullscreen.m \
 			src/sx_clear_window.m \
 			src/sx_display_cursor.m \
+			src/sx_set_cursor_position.m \
 			src/sx_set_key_repeat.m \
 			src/sx_new_surface.m \
+			src/sx_clear_surface.m \
 			src/sx_destroy_surface.m \
 			src/sx_surface_data.m \
 			src/sx_blit_surface.m \

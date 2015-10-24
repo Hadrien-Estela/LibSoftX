@@ -10,7 +10,7 @@ compile with -framework AppKit -framework OpenGL
 - Create a surface from JPEG or PNG
 - Create surface from text and .ttf font file
 - Open and play sounds
-- Use an OpenGL3 or OpenGL4 context
+- Use an OpenGL4 context
 - Enable FullScreen application
 
 Future features:
