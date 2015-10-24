@@ -45,7 +45,7 @@
 	if (windowStyle & SX_WINDOW_FULLSCREEN)
 	{
 		fullscreen = TRUE;
-		windowStyle = SX_WINDOW_BORDERLESS;
+		windowStyle -= SX_WINDOW_FULLSCREEN;
 	}
 
 	// init window
