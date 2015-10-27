@@ -14,6 +14,8 @@
 
 void		sx_display_cursor(int boolean)
 {
+	if (!SX_APP)
+		return ;
 	if (boolean == FALSE)
 		[NSCursor hide];
 	else if (boolean == TRUE)

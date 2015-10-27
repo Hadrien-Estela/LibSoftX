@@ -19,7 +19,7 @@ int			sx_pool_event(void *win_ptr, struct s_sx_event *event)
 	t_event_pool	*e;
 	t_sx_win		*sx_win_p;
 
-	if (!win_ptr || !event)
+	if (!win_ptr || !event || !SX_APP)
 		return (-1);
 	sx_win_p = (t_sx_win*)win_ptr;
 	e = sx_win_p->eventPool;	

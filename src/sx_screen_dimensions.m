@@ -14,6 +14,8 @@
 
 void		sx_screen_dimensions(size_t *width, size_t *height)
 {
+	if (!SX_APP || !width || !height)
+		return ;
 	*width = SX_SCREEN_X;	
 	*height = SX_SCREEN_Y;
 }

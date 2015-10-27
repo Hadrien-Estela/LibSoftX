@@ -18,7 +18,7 @@ void			sx_put_pixel(void *win_ptr, size_t x, size_t y, int32_t rgb)
 	SxWindow	*window;
 	NSPoint		pixel;
 
-	if (!win_ptr)
+	if (!win_ptr || !SX_APP)
 		return ;
 	sx_wp = (t_sx_win*)win_ptr;
 	window = (SxWindow*)sx_wp->win_ptr;

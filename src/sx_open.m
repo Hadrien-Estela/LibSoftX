@@ -48,6 +48,8 @@ void					sx_open(void)
 {
 	static int			first;
 
+	if (SX_APP)
+		return ;
 	if (first == 0 || SX_APP == NULL)
 	{
 		allocandcreateapp();

@@ -17,7 +17,7 @@ void		sx_window_position(void *win_ptr, size_t *x, size_t *y)
 	t_sx_win		*sx_win;
 	NSRect			frame;
 
-	if (!win_ptr)
+	if (!win_ptr || !x || !y)
 		return ;
 	sx_win = (t_sx_win*)win_ptr;
 	frame = [sx_win->win_ptr frame];

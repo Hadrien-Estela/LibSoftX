@@ -18,7 +18,7 @@ void		sx_display_window(void *win_ptr, int boolean)
 	t_sx_win		*sx_wp;
 	SxWindow		*window;
 
-	if (!win_ptr)
+	if (!win_ptr || !SX_APP)
 		return ;
 	sx_wp = (t_sx_win*)win_ptr;
 	window = (SxWindow*)sx_wp->win_ptr;

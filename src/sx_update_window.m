@@ -16,6 +16,8 @@ void			sx_update_window(void *win_ptr)
 {
 	t_sx_win		*sx_win;
 
+	if (!win_ptr || !SX_APP)
+		return ;
 	sx_win = (t_sx_win*)win_ptr;
 	[[sx_win->win_ptr contentView] updateContext];
 }

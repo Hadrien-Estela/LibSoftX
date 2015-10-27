@@ -20,7 +20,7 @@ void		sx_set_window_size(void *win_ptr, size_t x, size_t y)
 	size_t			ox;
 	size_t			oy;
 
-	if (!win_ptr)
+	if (!win_ptr || !SX_APP)
 		return ;
 	sx_win = (t_sx_win*)win_ptr;
 	sx_window_position(win_ptr, &ox, &oy);

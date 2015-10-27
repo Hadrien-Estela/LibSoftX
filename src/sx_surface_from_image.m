@@ -113,6 +113,8 @@ void		*sx_surface_from_image(const char *file)
 	void 					*map;
 	int						type;
 	
+	if (!file || !SX_APP)
+		return (NULL);
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 	{

@@ -16,6 +16,8 @@ void		sx_set_cursor_position(size_t x, size_t y)
 {
 	CGPoint		point;
 
+	if (!SX_APP)
+		return ;
 	point.x = x;
 	point.y = SX_SCREEN_Y - y;
 	CGWarpMouseCursorPosition(point);

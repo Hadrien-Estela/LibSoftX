@@ -16,7 +16,7 @@ void			sx_pause_sound(void *sound_ptr)
 {
 	NSSound		*sound;
 
-	if (!sound_ptr)
+	if (!sound_ptr || !SX_APP)
 		return ;
 	sound = (NSSound*)sound_ptr;
 	[sound pause];

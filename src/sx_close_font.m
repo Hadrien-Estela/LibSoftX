@@ -16,7 +16,7 @@ void		sx_close_font(void *font_ptr)
 {
 	CTFontRef 		font;
 
-	if (!font_ptr)
+	if (!font_ptr || !SX_APP)
 		return ;
 	font = (CTFontRef)font_ptr;
 	CFRelease(font);

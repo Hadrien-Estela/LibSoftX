@@ -38,7 +38,7 @@ void			sx_destroy_window(void *win_ptr)
 	t_sx_win		*sx_mywin;
 	t_sx_win		*it;
 
-	if (!win_ptr)
+	if (!win_ptr || !SX_APP)
 		return ;
 	sx_mywin = (t_sx_win*)win_ptr;
 	if (SX_APP->win_lst == sx_mywin)

@@ -21,6 +21,8 @@ void		*sx_open_sound(char *audio_file)
 	NSSound						*sound;
 	int							fd;
 
+	if (!SX_APP || !audio_file)
+		return (NULL);
 	fd = open(audio_file, O_RDONLY);
 	if (fd == -1)
 	{

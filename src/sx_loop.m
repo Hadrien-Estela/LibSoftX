@@ -33,6 +33,8 @@ void			sx_loop(void (*loop_func)(void *datas), void *datas)
 {
 	t_sx		*sx_p;
 
+	if (!SX_APP || !loop_func)
+		return ;
 	sx_p = SX_APP;
 	sx_p->loop_func = loop_func;
 	sx_p->loop_datas = datas;

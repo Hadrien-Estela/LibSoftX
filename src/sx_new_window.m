@@ -73,6 +73,8 @@ void			*sx_new_window(size_t x, size_t y, char *title, uint32_t flags)
 {
 	t_sx_win	*new_win;
 
+	if (!SX_APP)
+		return (NULL);
 	new_win = alloc_and_push(SX_APP);
 	if (flags & SX_WINDOW_OPENGL4_CONTEXT)
 		new_win->gl = TRUE;

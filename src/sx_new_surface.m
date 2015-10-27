@@ -16,6 +16,8 @@ void		*sx_new_surface(size_t width, size_t height)
 {
 	t_sx_surface		*surface;
 
+	if (!SX_APP)
+		return (NULL);
 	surface = (t_sx_surface*)malloc(sizeof(t_sx_surface));
 	surface->width = width; 
 	surface->height = height;

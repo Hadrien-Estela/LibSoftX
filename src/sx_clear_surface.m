@@ -16,6 +16,8 @@ void		sx_clear_surface(void *surface)
 {
 	t_sx_surface		*buf;
 
+	if (!surface || !SX_APP)
+		return ;
 	buf = (t_sx_surface*)surface;
 	bzero(buf->buffer, sizeof(uint32_t) * (buf->width * buf->height));
 }

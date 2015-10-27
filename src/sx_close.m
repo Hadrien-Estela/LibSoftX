@@ -18,6 +18,8 @@ void		sx_close(void)
 	t_sx				*sx;
 	NSApplication		*app;
 
+	if (!SX_APP)
+		return ;
 	sx = SX_APP;
 	app = sx->app_ptr;
 	[NSApp stop:nil];

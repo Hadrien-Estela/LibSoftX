@@ -17,7 +17,7 @@ void			sx_set_window_alpha(void *win_ptr, float alpha)
 	SxWindow	*window;
 	t_sx_win	*sx_wp;
 
-	if (!win_ptr)
+	if (!win_ptr || !SX_APP)
 		return ;
 	sx_wp = (t_sx_win*)win_ptr;
 	window = (SxWindow*)sx_wp->win_ptr;

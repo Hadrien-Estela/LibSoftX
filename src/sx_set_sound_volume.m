@@ -16,7 +16,7 @@ void		sx_set_sound_volume(void *sound_ptr, float volume)
 {
 	NSSound		*sound;
 
-	if (!sound_ptr)
+	if (!sound_ptr || !SX_APP)
 		return ;
 	sound = (NSSound*)sound_ptr;
 	[sound setVolume:volume];

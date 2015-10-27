@@ -16,7 +16,7 @@ uint32_t		*sx_surface_data(void *surface, size_t *width, size_t *height)
 {
 	t_sx_surface		*buf;
 
-	if (!surface)
+	if (!surface || !SX_APP || !width || !height)
 		return (NULL);
 	buf = (t_sx_surface*)surface;
 	*width = buf->width;

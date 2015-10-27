@@ -16,7 +16,7 @@ void		sx_play_sound(void *sound_ptr, int loop)
 {
 	NSSound		*sound;
 
-	if (!sound_ptr)
+	if (!sound_ptr || !SX_APP)
 		return ;
 	sound = (NSSound*)sound_ptr;
 	if (loop)

@@ -81,7 +81,7 @@ void			*sx_str_to_surface(void *font, char *s, uint32_t f, uint32_t b)
 	CFStringRef 				keys[2];
 	CFTypeRef 					values[2];
 
-	if (!font || !s)
+	if (!font || !s || !SX_APP)
 		return (NULL);
 	//foreground color
 	foreground = [NSColor colorWithCalibratedRed:((f >> 16) & 0xFF) / 255.0f

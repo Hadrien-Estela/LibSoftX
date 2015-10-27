@@ -23,6 +23,8 @@ void		*sx_open_font(const char *file_ttf, size_t police_size)
 	CGFontRef 					glyphs;
 	int							fd;
 
+	if (!file_ttf || !SX_APP)
+		return (NULL);
 	fd = open(file_ttf, O_RDONLY);
 	if (fd == -1)
 	{

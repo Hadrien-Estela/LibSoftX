@@ -17,7 +17,7 @@ void		sx_destroy_surface(void *surface)
 {
 	t_sx_surface	*surface_t;
 
-	if (!surface)
+	if (!surface || !SX_APP)
 		return ;
 	surface_t = (t_sx_surface*)surface;
 	free(surface_t->buffer);
